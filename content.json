@@ -3,7 +3,7 @@
     "title": "Jason Boog",
     "tagline": "",
     "deck": "",
-    "metaDescription": "Jason Boog is a writer and editor in Michigan. He covers books, the Great Depression, the card game euchre, AI and writing, and the curious corners of culture."
+    "metaDescription": ""
   },
   "nav": [
     {
@@ -11,24 +11,24 @@
       "href": "/about.html"
     },
     {
-      "label": "Resume",
-      "href": "/resume.html"
-    },
-    {
       "label": "Contact",
       "href": "/contact.html"
+    },
+    {
+      "label": "Resume",
+      "href": "/resume.html"
     }
   ],
   "books": {
     "kicker": "The Books",
     "items": [
       {
-        "title": "Born Reading: Bringing Up Bookworms in a Digital Age",
-        "url": "https://www.simonandschuster.com/books/Born-Reading/Jason-Boog/9781476712970"
+        "title": "<i>The Deep End: The Literary Scene in the Great Depression and Today</i>",
+        "url": "https://orbooks.com/catalog/the-deep-end/"
       },
       {
-        "title": "The Deep End: The Literary Scene in the Great Depression and Today",
-        "url": "https://jasonboog.com/the-deep-end/"
+        "title": "<i>Born Reading: Bringing Up Bookworms in a Digital Age</i>",
+        "url": "https://www.simonandschuster.com/books/Born-Reading/Jason-Boog/9781476749792"
       }
     ]
   },
