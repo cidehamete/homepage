@@ -166,58 +166,58 @@
       "id": "computer-room",
       "no": "01",
       "name": "The Computer Room",
-      "deck": "Mid-century photojournalism of early computing. Photographers Thomas J. O'Halloran and Warren K. Leffler, working for U.S. News & World Report between 1963 and 1979.",
-      "source": "U.S. News & World Report Magazine Photograph Collection, Library of Congress",
+      "deck": "Mid-century photojournalism of early computing archived at the Library of Congress.",
+      "source": "Library of Congress",
       "accent": "#a83432",
       "paper": "#f4ecd8",
       "plates": [
         {
-          "slot": "hero",
-          "focus": "center 40%",
-          "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/86200/86216v.jpg",
-          "title": "Man at a computer terminal",
-          "creator": "",
-          "year": ""
-        },
-        {
           "slot": "open-book",
           "focus": "center 30%",
           "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/85300/85359v.jpg",
-          "title": "Architectural design system",
-          "creator": "U.S. News & World Report",
-          "year": ""
-        },
-        {
-          "slot": "history-club",
-          "focus": "center 25%",
-          "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/72800/72892v.jpg",
-          "title": "Computer terminal operator",
-          "creator": "Thomas J. O'Halloran",
-          "year": "1963"
-        },
-        {
-          "slot": "wititi",
-          "focus": "center 75%",
-          "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/89300/89368v.jpg",
-          "title": "Computer room, Public Health Service",
-          "creator": "Warren K. Leffler",
-          "year": "1967"
-        },
-        {
-          "slot": "writing-machines",
-          "focus": "center 70%",
-          "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/85400/85408v.jpg",
-          "title": "Computer room, U.S. News offices",
-          "creator": "U.S. News & World Report",
+          "title": "",
+          "creator": "Library of Congress",
           "year": ""
         },
         {
           "slot": "euchre-club",
           "focus": "center",
           "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/56500/56545v.jpg",
-          "title": "Employee with computer tape reel",
-          "creator": "Thomas J. O'Halloran",
-          "year": "c. 1979"
+          "title": "",
+          "creator": "Library of Congress",
+          "year": ""
+        },
+        {
+          "slot": "hero",
+          "focus": "center 40%",
+          "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/86200/86216v.jpg",
+          "title": "",
+          "creator": "Library of Congress",
+          "year": ""
+        },
+        {
+          "slot": "writing-machines",
+          "focus": "center 70%",
+          "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/85400/85408v.jpg",
+          "title": "",
+          "creator": "Library of Congress",
+          "year": ""
+        },
+        {
+          "slot": "wititi",
+          "focus": "center 75%",
+          "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/89300/89368v.jpg",
+          "title": "",
+          "creator": "Library of Congress",
+          "year": ""
+        },
+        {
+          "slot": "history-club",
+          "focus": "center 25%",
+          "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/72800/72892v.jpg",
+          "title": "",
+          "creator": "Library of Congress",
+          "year": ""
         }
       ]
     }
