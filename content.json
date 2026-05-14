@@ -1,0 +1,168 @@
+{
+  "site": {
+    "title": "Jason Boog",
+    "tagline": "Writer & Editor",
+    "deck": "Writer · Editor at [Fable](https://fable.co) · Devoted reader of strange and wonderful things.",
+    "metaDescription": "Jason Boog is a writer and editor in Los Angeles. He covers books, the Great Depression, the card game euchre, AI and writing, and the curious corners of culture."
+  },
+  "nav": [
+    { "label": "About",   "href": "/about.html"   },
+    { "label": "Resume",  "href": "/resume.html"  },
+    { "label": "Contact", "href": "/contact.html" }
+  ],
+  "books": {
+    "kicker": "The Books",
+    "items": [
+      { "title": "Born Reading: Bringing Up Bookworms in a Digital Age", "url": "https://www.simonandschuster.com/books/Born-Reading/Jason-Boog/9781476712970" },
+      { "title": "The Deep End: The Literary Scene in the Great Depression and Today", "url": "https://jasonboog.com/the-deep-end/" }
+    ]
+  },
+  "rooms": [
+    {
+      "slot": "open-book",
+      "name": "Open Book",
+      "deck": "On reading, raising readers, and the book club.",
+      "caption": "Caption goes here — [with a link](#).",
+      "moreUrl": "#",
+      "pieces": [
+        { "title": "*Born Reading: Bringing Up Bookworms in a Digital Age*", "url": "https://www.simonandschuster.com/books/Born-Reading/Jason-Boog/9781476712970" },
+        { "title": "Why I Stopped Skimming", "url": "#" },
+        { "title": "Three Books I Re-Read Every Year", "url": "#" },
+        { "title": "On Marginalia", "url": "#" }
+      ]
+    },
+    {
+      "slot": "wititi",
+      "name": "Why Is This Interesting?",
+      "deck": "Essays on the curious, the undersung, and the compulsively fascinating.",
+      "caption": "Caption goes here — [with a link](#).",
+      "moreUrl": "#",
+      "pieces": [
+        { "title": "Keith Jarrett and the ECM Sound", "url": "#" },
+        { "title": "The Patron Saint of Lost Causes", "url": "#" },
+        { "title": "A Brief History of the Cassette Letter", "url": "#" },
+        { "title": "In Praise of the Index", "url": "#" }
+      ]
+    },
+    {
+      "slot": "history-club",
+      "name": "History Club",
+      "deck": "Writers who survived the blast furnace — and what they can teach us now.",
+      "caption": "Caption goes here — [with a link](#).",
+      "moreUrl": "#",
+      "pieces": [
+        { "title": "*The Deep End: The Literary Scene in the Great Depression and Today*", "url": "https://jasonboog.com/the-deep-end/" },
+        { "title": "Meridel Le Sueur's Reporting", "url": "#" },
+        { "title": "*The New Masses*, Briefly Explained", "url": "#" },
+        { "title": "What the WPA Writers Got Right", "url": "#" }
+      ]
+    },
+    {
+      "slot": "writing-machines",
+      "name": "Writing Machines",
+      "deck": "Notes from one of the first writers to take AI seriously as a co-author.",
+      "caption": "Caption goes here — [with a link](#).",
+      "moreUrl": "#",
+      "pieces": [
+        { "title": "Artificial Intelligence & Writing", "url": "https://jasonboog.com/artificial-intelligence-writing/" },
+        { "title": "On Confabulation, Human and Otherwise", "url": "#" },
+        { "title": "The First Synthesizer Was Also a Scandal", "url": "#" },
+        { "title": "Five Prompts I Use Every Week", "url": "#" }
+      ]
+    }
+  ],
+  "quotes": [
+    { "text": "Digressions, incontestably, are the sunshine — they are the life, the soul of reading!", "attr": "Laurence Sterne, *Tristram Shandy*" },
+    { "text": "Hard times can kindle radical solutions.", "attr": "J.B., on the *New Masses* and the Great Depression" },
+    { "text": "It's tough being an author these days, and it's getting harder.", "attr": "Authors Guild survey, quoted in *The Deep End*" },
+    { "text": "Confabulation: familiar talk; easy, unrestrained, unceremonious conversation. The most mundane, inefficient, wonderful pastime.", "attr": "after Webster's 1913, on the heart of euchre" },
+    { "text": "Can you imagine what it was like to hear a synthesizer for the first time?", "attr": "J.B., on AI and writing" },
+    { "text": "From German farmers to shipwrecked sailors to lonely astronauts, euchre has helped us cope with alien environments.", "attr": "J.B., *The Legend of Euchre*" }
+  ],
+  "activeCollection": "computer-room",
+  "collections": [
+    {
+      "id": "computer-room",
+      "no": "01",
+      "name": "The Computer Room",
+      "deck": "Mid-century photojournalism of early computing. Photographers Thomas J. O'Halloran and Warren K. Leffler, working for U.S. News & World Report between 1963 and 1979.",
+      "source": "U.S. News & World Report Magazine Photograph Collection, Library of Congress",
+      "accent": "#a83432",
+      "paper": "#f4ecd8",
+      "plates": [
+        { "slot": "hero",             "focus": "center 40%", "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/86200/86216v.jpg", "title": "Man at a computer terminal", "creator": "", "year": "" },
+        { "slot": "open-book",        "focus": "center 30%", "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/85300/85359v.jpg", "title": "Architectural design system", "creator": "U.S. News & World Report", "year": "" },
+        { "slot": "history-club",     "focus": "center 25%", "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/72800/72892v.jpg", "title": "Computer terminal operator", "creator": "Thomas J. O'Halloran", "year": "1963" },
+        { "slot": "wititi",           "focus": "center 75%", "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/89300/89368v.jpg", "title": "Computer room, Public Health Service", "creator": "Warren K. Leffler", "year": "1967" },
+        { "slot": "writing-machines", "focus": "center 70%", "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/85400/85408v.jpg", "title": "Computer room, U.S. News offices", "creator": "U.S. News & World Report", "year": "" },
+        { "slot": "euchre-club",      "focus": "center",     "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/56500/56545v.jpg", "title": "Employee with computer tape reel", "creator": "Thomas J. O'Halloran", "year": "c. 1979" }
+      ]
+    }
+  ],
+  "about": {
+    "kicker": "About",
+    "headline": "A few notes on the writer.",
+    "deck": "Books, the Great Depression, the card game euchre, AI & writing, and the curious corners of culture.",
+    "locationStamp": ["Los Angeles", "California", "MMXXVI"],
+    "paragraphs": [
+      "Jason Boog is a writer and editor in Los Angeles. He is the author of *Born Reading* (Touchstone) and *The Deep End: The Literary Scene in the Great Depression and Today*, and edits at [Fable](https://fable.co), where he works on tools for readers and writers.",
+      "He has reported on books, technology, and labor for outlets including the Los Angeles Times, Wired, Salon, and Publishers Weekly, where he edited GalleyCat. His current obsessions include WPA-era literary magazines, the patient strangeness of the card game euchre, and what it means to write alongside a machine that talks back.",
+      "He's also the proud parent of a small bookworm, a habit of three re-reads a year, and a long-running suspicion that the most interesting writing happens in the margins.",
+      "If a piece of his work has landed in your hands at the right moment, he'd love to hear about it. The [letters page](/contact.html) is always open."
+    ]
+  },
+  "resume": {
+    "kicker": "Resume",
+    "headline": "Selected work, in reverse order.",
+    "deck": "A working résumé — books, editorial positions, and reporting. [Download PDF](#).",
+    "sections": [
+      {
+        "heading": "Books",
+        "entries": [
+          { "year": "2024", "title": "The Deep End", "org": "The Literary Scene in the Great Depression and Today", "description": "A history of writers, magazines, and labor movements between two crashes — and what they can teach us now." },
+          { "year": "2014", "title": "Born Reading", "org": "Bringing Up Bookworms in a Digital Age · Touchstone / Simon & Schuster", "description": "A reader's guide to raising readers, drawn from interviews with librarians, researchers, and parents." }
+        ]
+      },
+      {
+        "heading": "Editorial",
+        "entries": [
+          { "year": "2021 — now", "title": "Editor", "org": "Fable", "description": "Editorial direction for a reading and book-club platform — author programs, recommendation systems, and writing tools." },
+          { "year": "2017 — 2021", "title": "Senior Editor", "org": "Independent & consulting work", "description": "Books and culture editing for technology and media clients; long-form reporting on labor and the literary world." },
+          { "year": "2008 — 2016", "title": "Editor, GalleyCat", "org": "Mediabistro / Publishers Weekly", "description": "Daily reporting on the publishing industry — authors, deals, technology, and the long tail of bookselling." }
+        ]
+      },
+      {
+        "heading": "Reporting & Essays",
+        "entries": [
+          { "year": "Selected", "title": "Bylines", "org": "Los Angeles Times · Wired · Salon · Publishers Weekly · The Believer", "description": "Reporting on books, AI & writing, the gig economy, and the strange recurrences of the Great Depression." }
+        ]
+      },
+      {
+        "heading": "Talks & Teaching",
+        "entries": [
+          { "year": "Ongoing", "title": "Workshops on reading aloud, writing with AI, and the literary archive", "org": "Libraries, schools, and writing programs", "description": "" }
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "kicker": "Letters",
+    "headline": "Write to the editor.",
+    "deck": "Notes, questions, story tips, and reading recommendations are all welcome. I read everything; I answer most.",
+    "cards": [
+      { "kicker": "Email",             "headline": "jasonboog@gmail.com", "url": "mailto:jasonboog@gmail.com",                       "description": "Best for letters, story ideas, and book recommendations." },
+      { "kicker": "Press & Speaking",  "headline": "Inquire",             "url": "mailto:jasonboog@gmail.com?subject=Press%20inquiry", "description": "Interviews, panels, workshops, and reading-aloud events." },
+      { "kicker": "Newsletter",        "headline": "jasonboog.com",       "url": "https://jasonboog.com",                              "description": "Occasional notes from the reading room — books, history, and writing machines." },
+      { "kicker": "Elsewhere",         "headline": "Fable",               "url": "https://fable.co",                                   "description": "Day job. Editorial direction for a platform built around the things books make people do together." }
+    ]
+  },
+  "footer": {
+    "social": [
+      { "label": "Fable",     "url": "https://fable.co" },
+      { "label": "LinkedIn",  "url": "https://www.linkedin.com/" },
+      { "label": "Instagram", "url": "https://www.instagram.com/" },
+      { "label": "Twitter",   "url": "https://twitter.com/" },
+      { "label": "Facebook",  "url": "https://www.facebook.com/" }
+    ]
+  }
+}

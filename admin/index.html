@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Site Editor — Jason Boog</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:      #f4ecd8;
+    --paper-soft: #ebe2c8;
+    --paper-deep: #e3d8b8;
+    --ink:        #2a2117;
+    --ink-soft:   #6b5e4a;
+    --ink-faint:  #a89a7e;
+    --rule:       #c8bda0;
+    --rule-soft:  #d9cfb4;
+    --accent:     #a83432;
+    --ok:         #2a7a3a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.55;
+    padding: 0;
+    min-height: 100vh;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  a { color: var(--ink); }
+  a:hover { color: var(--accent); }
+
+  /* Layout */
+  .app { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+  aside.sidebar {
+    background: var(--paper-soft);
+    border-right: 0.5px solid var(--rule);
+    padding: 1.5rem 0;
+    position: sticky; top: 0; height: 100vh;
+    display: flex; flex-direction: column; gap: 0.25rem;
+  }
+  .brand {
+    padding: 0 1.25rem 1rem;
+    border-bottom: 0.5px solid var(--rule);
+    margin-bottom: 0.5rem;
+  }
+  .brand .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600; font-size: 1.4rem; line-height: 1; letter-spacing: -0.01em;
+  }
+  .brand .sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-faint); margin-top: 0.35rem;
+  }
+  .nav button {
+    appearance: none; background: transparent; border: 0;
+    padding: 0.55rem 1.25rem; width: 100%; text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); cursor: pointer; border-left: 2px solid transparent;
+  }
+  .nav button:hover { color: var(--accent); }
+  .nav button.is-active { color: var(--accent); border-left-color: var(--accent); background: rgba(168,52,50,0.06); }
+  .sidebar-foot { margin-top: auto; padding: 1rem 1.25rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.1em; }
+
+  main.body { padding: 2rem 2.5rem 4rem; max-width: 920px; }
+
+  /* Topbar (status + save) */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; margin-bottom: 1.5rem;
+    padding-bottom: 1rem; border-bottom: 0.5px solid var(--rule);
+  }
+  .topbar h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600; font-size: 1.6rem; line-height: 1;
+  }
+  .topbar .actions { display: flex; gap: 0.5rem; align-items: center; }
+  .status {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint);
+  }
+  .status.dirty { color: var(--accent); }
+  .status.ok    { color: var(--ok); }
+
+  button.btn, a.btn {
+    appearance: none; cursor: pointer; text-decoration: none;
+    background: var(--paper-soft); color: var(--ink);
+    border: 0.5px solid var(--rule);
+    padding: 0.5rem 0.9rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+    line-height: 1; transition: background 0.1s;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  button.btn:hover, a.btn:hover { background: var(--paper-deep); color: var(--ink); }
+  button.btn.primary {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  button.btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+  button.btn.danger { color: var(--accent); }
+  button.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* Form chrome */
+  .pane { display: none; }
+  .pane.is-active { display: block; }
+  .pane h2 {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent);
+    margin: 0 0 1rem;
+  }
+  .pane .hint {
+    font-size: 0.85rem; color: var(--ink-soft);
+    margin-bottom: 1.5rem; line-height: 1.55;
+  }
+  .pane .hint code { font-family: 'IBM Plex Mono', monospace; background: var(--paper-soft); padding: 0.05rem 0.3rem; border-radius: 2px; font-size: 0.85em; }
+
+  fieldset.card {
+    border: 0.5px solid var(--rule);
+    background: var(--paper-soft);
+    padding: 1.25rem 1.25rem 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  fieldset.card legend {
+    padding: 0 0.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .row { display: grid; grid-template-columns: 160px 1fr; gap: 1rem; margin-bottom: 0.85rem; align-items: start; }
+  .row label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+    padding-top: 0.5rem;
+  }
+  .row .field { display: flex; flex-direction: column; gap: 0.25rem; }
+  .row .field .note { font-size: 0.75rem; color: var(--ink-faint); line-height: 1.4; }
+
+  input[type=text], input[type=url], input[type=email], textarea, select {
+    width: 100%;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.95rem; line-height: 1.5;
+    background: #fbf6e5;
+    color: var(--ink);
+    border: 0.5px solid var(--rule);
+    padding: 0.5rem 0.65rem;
+    border-radius: 2px;
+  }
+  input.mono, textarea.mono { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--ink); }
+  textarea { resize: vertical; min-height: 4.5em; }
+  textarea.tall { min-height: 8em; }
+
+  .card-actions {
+    display: flex; gap: 0.4rem; flex-wrap: wrap;
+    padding-top: 0.75rem; margin-top: 0.25rem;
+    border-top: 0.5px dotted var(--rule);
+  }
+  .add-row {
+    margin-top: 0.5rem;
+  }
+
+  /* Setup screen */
+  .setup {
+    max-width: 520px; margin: 4rem auto; padding: 2rem;
+    background: var(--paper-soft); border: 0.5px solid var(--rule);
+  }
+  .setup h1 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    font-size: 1.8rem; margin-bottom: 0.5rem;
+  }
+  .setup .lead { color: var(--ink-soft); margin-bottom: 1.5rem; line-height: 1.55; font-size: 0.95rem; }
+  .setup ol { margin: 0 0 1rem 1.25rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-soft); }
+  .setup ol li { margin-bottom: 0.4rem; }
+  .setup ol code { font-family: 'IBM Plex Mono', monospace; background: var(--paper); padding: 0.05rem 0.3rem; font-size: 0.85em; }
+  .setup .row { grid-template-columns: 140px 1fr; }
+  .setup-actions { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem; }
+  .err { color: var(--accent); font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.5rem 0; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100;
+    background: var(--ink); color: var(--paper);
+    padding: 0.75rem 1rem;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border-radius: 2px; opacity: 0; transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s; pointer-events: none;
+    max-width: 320px;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.err { background: var(--accent); }
+
+  /* Small */
+  .pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.18rem 0.5rem; border: 0.5px solid var(--rule);
+    color: var(--ink-faint);
+  }
+  .pill.active { color: var(--accent); border-color: var(--accent); }
+
+  /* Image preview */
+  .plate-prev {
+    width: 100%; aspect-ratio: 4/3; background: var(--paper-deep);
+    background-image: repeating-linear-gradient(45deg, var(--paper-soft) 0 10px, var(--paper-deep) 10px 20px);
+    overflow: hidden; border: 0.5px solid var(--rule);
+  }
+  .plate-prev img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.04) sepia(0.05); }
+
+  @media (max-width: 720px) {
+    .app { grid-template-columns: 1fr; }
+    aside.sidebar { position: static; height: auto; flex-direction: row; flex-wrap: wrap; padding: 1rem; }
+    .nav { display: flex; flex-wrap: wrap; }
+    .nav button { width: auto; padding: 0.4rem 0.7rem; border-left: 0; border-bottom: 2px solid transparent; }
+    .nav button.is-active { border-left: 0; border-bottom-color: var(--accent); }
+    .brand { border-bottom: 0; padding-bottom: 0; }
+    main.body { padding: 1.5rem 1rem 3rem; }
+    .row { grid-template-columns: 1fr; gap: 0.35rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ SETUP SCREEN ═══════════════════════════════════════════ -->
+<div id="setup" class="setup" style="display:none;">
+  <h1>Connect to your GitHub repo</h1>
+  <p class="lead">One-time setup. The editor commits <code>content.json</code> straight to your repo on save. Cloudflare Pages picks it up and redeploys in ~30 seconds.</p>
+
+  <ol>
+    <li>Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener">github.com/settings/tokens</a> and click <em>Generate new token (fine-grained)</em>.</li>
+    <li>Repository access: <em>Only select repositories</em> → your site repo.</li>
+    <li>Permissions → Repository → <em>Contents: Read and write</em>. Save.</li>
+    <li>Copy the token (starts with <code>github_pat_</code>) and paste below.</li>
+  </ol>
+
+  <div class="row">
+    <label for="su-owner">Owner</label>
+    <div class="field">
+      <input type="text" id="su-owner" class="mono" placeholder="jasonboog">
+      <div class="note">Your GitHub username or org.</div>
+    </div>
+  </div>
+  <div class="row">
+    <label for="su-repo">Repo</label>
+    <div class="field">
+      <input type="text" id="su-repo" class="mono" placeholder="jasonboog-site">
+    </div>
+  </div>
+  <div class="row">
+    <label for="su-branch">Branch</label>
+    <div class="field">
+      <input type="text" id="su-branch" class="mono" value="main">
+    </div>
+  </div>
+  <div class="row">
+    <label for="su-path">Path</label>
+    <div class="field">
+      <input type="text" id="su-path" class="mono" value="content.json">
+      <div class="note">Where the content file lives in the repo.</div>
+    </div>
+  </div>
+  <div class="row">
+    <label for="su-token">Token</label>
+    <div class="field">
+      <input type="text" id="su-token" class="mono" placeholder="github_pat_..." autocomplete="off">
+      <div class="note">Stored only in this browser (localStorage). Never sent anywhere except github.com.</div>
+    </div>
+  </div>
+  <div class="err" id="setup-err"></div>
+  <div class="setup-actions">
+    <button class="btn primary" id="setup-save">Connect</button>
+  </div>
+</div>
+
+<!-- ═══ MAIN APP ═══════════════════════════════════════════════ -->
+<div id="app" class="app" style="display:none;">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="name">Site Editor</div>
+      <div class="sub">Jason Boog</div>
+    </div>
+    <div class="nav" id="nav">
+      <button data-pane="general">General</button>
+      <button data-pane="books">The Books</button>
+      <button data-pane="rooms">Four Rooms</button>
+      <button data-pane="collections">Image Collections</button>
+      <button data-pane="quotes">Pull Quotes</button>
+      <button data-pane="about">About Page</button>
+      <button data-pane="resume">Resume</button>
+      <button data-pane="contact">Contact</button>
+      <button data-pane="footer">Footer / Social</button>
+    </div>
+    <div class="sidebar-foot">
+      <div><a href="/" target="_blank">View site →</a></div>
+      <div style="margin-top:0.5rem;"><a href="#" id="logout">Reset connection</a></div>
+    </div>
+  </aside>
+
+  <main class="body">
+    <div class="topbar">
+      <h1 id="pane-title">General</h1>
+      <div class="actions">
+        <span class="status" id="status">Loaded</span>
+        <button class="btn" id="revert" disabled>Revert</button>
+        <button class="btn primary" id="save" disabled>Save changes</button>
+      </div>
+    </div>
+
+    <section class="pane" id="pane-general"></section>
+    <section class="pane" id="pane-books"></section>
+    <section class="pane" id="pane-rooms"></section>
+    <section class="pane" id="pane-collections"></section>
+    <section class="pane" id="pane-quotes"></section>
+    <section class="pane" id="pane-about"></section>
+    <section class="pane" id="pane-resume"></section>
+    <section class="pane" id="pane-contact"></section>
+    <section class="pane" id="pane-footer"></section>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Site Editor — single-file admin for Jason Boog's site
+   - Auth: GitHub Personal Access Token, stored in localStorage
+   - Reads + writes content.json via GitHub Contents API
+   - On save: a commit to the repo; Cloudflare Pages redeploys
+═══════════════════════════════════════════════════════════════ */
+
+const LS_KEY = 'jb_admin_cfg';
+let cfg = null;        // { owner, repo, branch, path, token }
+let original = null;   // unedited JSON (string-canonical for diffing)
+let data = null;       // working draft
+let sha = null;        // GitHub file SHA
+let activePane = 'general';
+
+// ── Boot ───────────────────────────────────────────────────────
+init();
+
+async function init() {
+  try { cfg = JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (_) { cfg = null; }
+  if (!cfg) {
+    showSetup();
+  } else {
+    await loadAndRender();
+  }
+}
+
+function showSetup() {
+  document.getElementById('setup').style.display = '';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('setup-save').onclick = onConnect;
+}
+
+async function onConnect() {
+  const owner  = val('su-owner').trim();
+  const repo   = val('su-repo').trim();
+  const branch = val('su-branch').trim() || 'main';
+  const path   = val('su-path').trim() || 'content.json';
+  const token  = val('su-token').trim();
+  const errEl  = document.getElementById('setup-err');
+  errEl.textContent = '';
+  if (!owner || !repo || !token) { errEl.textContent = 'Owner, repo, and token are required.'; return; }
+  const probe = await fetch(ghUrl({ owner, repo, branch, path }), { headers: ghHeaders(token) });
+  if (!probe.ok) {
+    errEl.textContent = 'Could not reach repo (' + probe.status + '). Check the values and token permissions.';
+    return;
+  }
+  cfg = { owner, repo, branch, path, token };
+  localStorage.setItem(LS_KEY, JSON.stringify(cfg));
+  await loadAndRender();
+}
+
+function logout() {
+  localStorage.removeItem(LS_KEY);
+  location.reload();
+}
+
+// ── GitHub Contents API ───────────────────────────────────────
+function ghUrl(c) {
+  c = c || cfg;
+  return `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/contents/${encodeURIComponent(c.path)}?ref=${encodeURIComponent(c.branch)}`;
+}
+function ghHeaders(token) {
+  return {
+    'Authorization': 'Bearer ' + (token || cfg.token),
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+}
+
+async function loadAndRender() {
+  document.getElementById('setup').style.display = 'none';
+  document.getElementById('app').style.display = '';
+  setStatus('Loading…');
+  try {
+    const res = await fetch(ghUrl(), { headers: ghHeaders() });
+    if (!res.ok) throw new Error('GitHub returned ' + res.status);
+    const meta = await res.json();
+    sha = meta.sha;
+    const decoded = b64decodeUtf8(meta.content.replace(/\n/g, ''));
+    data = JSON.parse(decoded);
+    original = decoded;
+    renderAll();
+    setStatus('Loaded', 'ok');
+  } catch (e) {
+    console.error(e);
+    setStatus('Load failed', 'dirty');
+    toast('Could not load content.json — ' + e.message, true);
+  }
+}
+
+async function save() {
+  if (!isDirty()) return;
+  setStatus('Saving…');
+  const txt = JSON.stringify(data, null, 2);
+  const body = {
+    message: 'Edit content via /admin',
+    content: b64encodeUtf8(txt),
+    sha: sha,
+    branch: cfg.branch
+  };
+  try {
+    const res = await fetch(ghUrl(), {
+      method: 'PUT',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, ghHeaders()),
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      const j = await res.json().catch(() => ({}));
+      throw new Error(j.message || ('GitHub ' + res.status));
+    }
+    const result = await res.json();
+    sha = result.content.sha;
+    original = txt;
+    setStatus('Saved — Cloudflare is redeploying', 'ok');
+    toast('Saved. Live site updates in ~30s.');
+    updateDirtyButtons();
+  } catch (e) {
+    console.error(e);
+    setStatus('Save failed', 'dirty');
+    toast('Save failed: ' + e.message, true);
+  }
+}
+
+function revert() {
+  if (!confirm('Discard all unsaved edits?')) return;
+  data = JSON.parse(original);
+  renderAll();
+  setStatus('Reverted', 'ok');
+}
+
+// ── UTF-8 base64 ──────────────────────────────────────────────
+function b64encodeUtf8(s) {
+  return btoa(unescape(encodeURIComponent(s)));
+}
+function b64decodeUtf8(s) {
+  return decodeURIComponent(escape(atob(s)));
+}
+
+// ── Dirty tracking ────────────────────────────────────────────
+function isDirty() {
+  return JSON.stringify(data, null, 2) !== original;
+}
+function updateDirtyButtons() {
+  const dirty = isDirty();
+  document.getElementById('save').disabled = !dirty;
+  document.getElementById('revert').disabled = !dirty;
+  if (dirty) setStatus('Unsaved changes', 'dirty');
+}
+
+// ── Status & toast ────────────────────────────────────────────
+function setStatus(text, cls) {
+  const el = document.getElementById('status');
+  el.textContent = text;
+  el.className = 'status' + (cls ? ' ' + cls : '');
+}
+function toast(msg, isErr) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isErr ? ' err' : '');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(function () { t.className = 'toast' + (isErr ? ' err' : ''); }, 3500);
+}
+function val(id) { return document.getElementById(id).value; }
+
+// ═══ RENDERING ════════════════════════════════════════════════
+function renderAll() {
+  renderPane('general',     renderGeneral);
+  renderPane('books',       renderBooks);
+  renderPane('rooms',       renderRooms);
+  renderPane('collections', renderCollections);
+  renderPane('quotes',      renderQuotes);
+  renderPane('about',       renderAbout);
+  renderPane('resume',      renderResume);
+  renderPane('contact',     renderContact);
+  renderPane('footer',      renderFooter);
+  setActivePane(activePane);
+  updateDirtyButtons();
+}
+function renderPane(id, fn) {
+  const host = document.getElementById('pane-' + id);
+  host.innerHTML = '';
+  fn(host);
+}
+function setActivePane(id) {
+  activePane = id;
+  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('is-active', b.dataset.pane === id));
+  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('is-active', p.id === 'pane-' + id));
+  const label = document.querySelector('.nav button[data-pane="' + id + '"]');
+  if (label) document.getElementById('pane-title').textContent = label.textContent;
+}
+
+// ── Form helpers ──────────────────────────────────────────────
+function rowText(label, value, onInput, opts) {
+  opts = opts || {};
+  const wrap = document.createElement('div'); wrap.className = 'row';
+  const lab  = document.createElement('label'); lab.textContent = label;
+  const fld  = document.createElement('div');   fld.className = 'field';
+  const input = document.createElement(opts.tag || 'input');
+  if (opts.tag === 'textarea') { input.value = value || ''; if (opts.tall) input.classList.add('tall'); }
+  else { input.type = opts.type || 'text'; input.value = value || ''; }
+  if (opts.mono) input.classList.add('mono');
+  if (opts.placeholder) input.placeholder = opts.placeholder;
+  input.addEventListener('input', e => { onInput(e.target.value); updateDirtyButtons(); });
+  fld.appendChild(input);
+  if (opts.note) { const n = document.createElement('div'); n.className = 'note'; n.innerHTML = opts.note; fld.appendChild(n); }
+  wrap.appendChild(lab); wrap.appendChild(fld);
+  return wrap;
+}
+function card(legendText) {
+  const fs = document.createElement('fieldset'); fs.className = 'card';
+  const lg = document.createElement('legend'); lg.textContent = legendText;
+  fs.appendChild(lg);
+  return fs;
+}
+function addBtn(label, onClick) {
+  const b = document.createElement('button');
+  b.className = 'btn add-row'; b.type = 'button'; b.textContent = '+ ' + label;
+  b.onclick = onClick;
+  return b;
+}
+function rowBtns(onDelete, onUp, onDown) {
+  const wrap = document.createElement('div'); wrap.className = 'card-actions';
+  const mk = (label, fn, cls) => { const b = document.createElement('button'); b.type='button'; b.className='btn'+(cls?' '+cls:''); b.textContent=label; b.onclick=fn; return b; };
+  if (onUp)     wrap.appendChild(mk('↑ Move up',   onUp));
+  if (onDown)   wrap.appendChild(mk('↓ Move down', onDown));
+  if (onDelete) wrap.appendChild(mk('Delete',      onDelete, 'danger'));
+  return wrap;
+}
+function rerender() { renderAll(); }
+function move(arr, idx, dir) {
+  const j = idx + dir;
+  if (j < 0 || j >= arr.length) return;
+  [arr[idx], arr[j]] = [arr[j], arr[idx]];
+}
+
+// ═══ PANE RENDERERS ═══════════════════════════════════════════
+
+// General
+function renderGeneral(host) {
+  const s = data.site;
+  const intro = document.createElement('p'); intro.className = 'hint';
+  intro.innerHTML = 'These appear in the masthead at the top of every page. Use <code>*asterisks*</code> for italics and <code>[text](url)</code> for inline links inside the deck.';
+  host.appendChild(intro);
+  const c = card('Masthead');
+  c.appendChild(rowText('Title', s.title, v => s.title = v));
+  c.appendChild(rowText('Tagline', s.tagline, v => s.tagline = v, { note: 'Shown in the browser tab title.' }));
+  c.appendChild(rowText('Deck', s.deck, v => s.deck = v, { tag: 'textarea', note: 'The italic line under your name.' }));
+  c.appendChild(rowText('Meta description', s.metaDescription, v => s.metaDescription = v, { tag: 'textarea', note: 'For Google / link previews.' }));
+  host.appendChild(c);
+
+  // Nav links
+  const navCard = card('Main navigation');
+  data.nav.forEach((n, i) => {
+    const sub = card('Link ' + (i + 1));
+    sub.appendChild(rowText('Label', n.label, v => n.label = v));
+    sub.appendChild(rowText('URL',   n.href,  v => n.href  = v, { mono: true }));
+    sub.appendChild(rowBtns(
+      () => { data.nav.splice(i, 1); rerender(); },
+      i > 0 ? () => { move(data.nav, i, -1); rerender(); } : null,
+      i < data.nav.length - 1 ? () => { move(data.nav, i, 1); rerender(); } : null
+    ));
+    navCard.appendChild(sub);
+  });
+  navCard.appendChild(addBtn('Add nav link', () => { data.nav.push({ label: 'New', href: '/' }); rerender(); }));
+  host.appendChild(navCard);
+}
+
+// Books spotlight
+function renderBooks(host) {
+  const hint = document.createElement('p'); hint.className = 'hint';
+  hint.innerHTML = 'The two-book spotlight just under the masthead on the home page. Wrap a book title in <code>*asterisks*</code> for italics.';
+  host.appendChild(hint);
+
+  const top = card('Spotlight');
+  top.appendChild(rowText('Kicker', data.books.kicker, v => data.books.kicker = v, { note: 'The small uppercase label above the books, e.g. "The Books".' }));
+  host.appendChild(top);
+
+  data.books.items.forEach((b, i) => {
+    const c = card('Book ' + (i + 1));
+    c.appendChild(rowText('Title', b.title, v => b.title = v, { tag: 'textarea' }));
+    c.appendChild(rowText('URL',   b.url,   v => b.url   = v, { mono: true }));
+    c.appendChild(rowBtns(
+      () => { data.books.items.splice(i, 1); rerender(); },
+      i > 0 ? () => { move(data.books.items, i, -1); rerender(); } : null,
+      i < data.books.items.length - 1 ? () => { move(data.books.items, i, 1); rerender(); } : null
+    ));
+    host.appendChild(c);
+  });
+  host.appendChild(addBtn('Add book', () => { data.books.items.push({ title: 'New Book', url: '#' }); rerender(); }));
+}
+
+// Four Rooms
+function renderRooms(host) {
+  const hint = document.createElement('p'); hint.className = 'hint';
+  hint.innerHTML = 'The four "rooms" on the home page. Each room has its own image (matched by <code>slot</code>) from whichever Image Collection is active. Markdown: <code>*italic*</code> for titles, <code>[text](url)</code> for inline links inside captions.';
+  host.appendChild(hint);
+
+  data.rooms.forEach((r, i) => {
+    const c = card('Room: ' + r.name);
+    c.appendChild(rowText('Slot', r.slot, v => r.slot = v, { mono: true, note: 'Must match a plate <code>slot</code> in your active image collection.' }));
+    c.appendChild(rowText('Name', r.name, v => r.name = v));
+    c.appendChild(rowText('Deck', r.deck, v => r.deck = v, { tag: 'textarea', note: 'One-line description under the room name.' }));
+    c.appendChild(rowText('Image caption', r.caption, v => r.caption = v, { tag: 'textarea', note: 'Tiny line under the room\'s image. Markdown links OK.' }));
+    c.appendChild(rowText('"All of…" URL', r.moreUrl, v => r.moreUrl = v, { mono: true, note: 'Where the "All of Open Book →" link points.' }));
+
+    // Pieces (4-ish per room)
+    const pCard = card('Pieces (article links)');
+    r.pieces.forEach((p, j) => {
+      const sub = card('Piece ' + (j + 1));
+      sub.appendChild(rowText('Title', p.title, v => p.title = v, { tag: 'textarea' }));
+      sub.appendChild(rowText('URL',   p.url,   v => p.url   = v, { mono: true }));
+      sub.appendChild(rowBtns(
+        () => { r.pieces.splice(j, 1); rerender(); },
+        j > 0 ? () => { move(r.pieces, j, -1); rerender(); } : null,
+        j < r.pieces.length - 1 ? () => { move(r.pieces, j, 1); rerender(); } : null
+      ));
+      pCard.appendChild(sub);
+    });
+    pCard.appendChild(addBtn('Add piece', () => { r.pieces.push({ title: 'New Piece', url: '#' }); rerender(); }));
+    c.appendChild(pCard);
+
+    c.appendChild(rowBtns(
+      () => { if (confirm('Delete the whole "' + r.name + '" room?')) { data.rooms.splice(i, 1); rerender(); } },
+      i > 0 ? () => { move(data.rooms, i, -1); rerender(); } : null,
+      i < data.rooms.length - 1 ? () => { move(data.rooms, i, 1); rerender(); } : null
+    ));
+    host.appendChild(c);
+  });
+  host.appendChild(addBtn('Add room', () => {
+    data.rooms.push({ slot: 'new-room', name: 'New Room', deck: '', caption: '', moreUrl: '#', pieces: [] });
+    rerender();
+  }));
+}
+
+// Image Collections
+function renderCollections(host) {
+  const hint = document.createElement('p'); hint.className = 'hint';
+  hint.innerHTML =
+    'A collection is a theme pack of public-domain images. Drop new images in by their URL — Library of Congress, Internet Archive, Smithsonian Open Access, anything public.<br><br>' +
+    'Each plate has a <strong>slot</strong> that matches a room (e.g. <code>open-book</code>, <code>history-club</code>) plus a special <code>hero</code> slot for the daily image. <strong>focus</strong> tells the crop where to point (e.g. <code>center 30%</code>, <code>left 40%</code>).<br><br>' +
+    'Switch the active collection to "hang" a different set of images across the whole site.';
+  host.appendChild(hint);
+
+  // Active picker
+  const active = card('Active collection');
+  const sel = document.createElement('select');
+  data.collections.forEach(c => {
+    const o = document.createElement('option'); o.value = c.id; o.textContent = c.name + '  (' + c.id + ')';
+    if (c.id === data.activeCollection) o.selected = true;
+    sel.appendChild(o);
+  });
+  sel.onchange = () => { data.activeCollection = sel.value; updateDirtyButtons(); };
+  const row = document.createElement('div'); row.className = 'row';
+  const lab = document.createElement('label'); lab.textContent = 'Currently hung';
+  const fld = document.createElement('div'); fld.className = 'field'; fld.appendChild(sel);
+  row.appendChild(lab); row.appendChild(fld); active.appendChild(row);
+  host.appendChild(active);
+
+  data.collections.forEach((c, i) => {
+    const wrap = card('Collection: ' + c.name + (c.id === data.activeCollection ? '  ★' : ''));
+    wrap.appendChild(rowText('ID',        c.id,     v => c.id = v, { mono: true, note: 'Short slug, no spaces — used internally.' }));
+    wrap.appendChild(rowText('Number',    c.no,     v => c.no = v, { mono: true, note: 'Just for your own reference, like "01".' }));
+    wrap.appendChild(rowText('Name',      c.name,   v => c.name = v));
+    wrap.appendChild(rowText('Deck',      c.deck,   v => c.deck = v, { tag: 'textarea' }));
+    wrap.appendChild(rowText('Source',    c.source, v => c.source = v, { tag: 'textarea', note: 'Photo credit line.' }));
+    wrap.appendChild(rowText('Accent color', c.accent, v => c.accent = v, { mono: true, placeholder: '#a83432', note: 'Hex color. Sets the red-ish accent throughout the site when this collection is active.' }));
+    wrap.appendChild(rowText('Paper color',  c.paper || '', v => c.paper = v, { mono: true, placeholder: '#f4ecd8', note: 'Hex color for the page background.' }));
+
+    // Plates
+    const platesCard = card('Plates (images)');
+    c.plates.forEach((p, j) => {
+      const sub = card('Plate ' + (j + 1) + ' — slot: ' + (p.slot || '?'));
+      // preview
+      const prevRow = document.createElement('div'); prevRow.className = 'row';
+      const plab = document.createElement('label'); plab.textContent = 'Preview';
+      const pfld = document.createElement('div'); pfld.className = 'field';
+      const pwrap = document.createElement('div'); pwrap.className = 'plate-prev';
+      if (p.url) { const img = document.createElement('img'); img.src = p.url; img.style.objectPosition = p.focus || 'center'; pwrap.appendChild(img); }
+      pfld.appendChild(pwrap);
+      prevRow.appendChild(plab); prevRow.appendChild(pfld); sub.appendChild(prevRow);
+
+      sub.appendChild(rowText('Slot',    p.slot,    v => p.slot = v, { mono: true, note: 'Match a room slot — <code>hero</code>, <code>open-book</code>, <code>wititi</code>, <code>history-club</code>, <code>writing-machines</code>, etc.' }));
+      sub.appendChild(rowText('URL',     p.url,     v => p.url = v, { mono: true, note: 'Direct URL to a public-domain image (LOC, IA, Smithsonian, etc.).' }));
+      sub.appendChild(rowText('Focus',   p.focus,   v => p.focus = v, { mono: true, placeholder: 'center', note: 'CSS object-position: <code>center</code>, <code>center 30%</code>, <code>left 40%</code>…' }));
+      sub.appendChild(rowText('Title',   p.title,   v => p.title = v));
+      sub.appendChild(rowText('Creator', p.creator, v => p.creator = v));
+      sub.appendChild(rowText('Year',    p.year,    v => p.year = v, { mono: true }));
+      sub.appendChild(rowBtns(
+        () => { c.plates.splice(j, 1); rerender(); },
+        j > 0 ? () => { move(c.plates, j, -1); rerender(); } : null,
+        j < c.plates.length - 1 ? () => { move(c.plates, j, 1); rerender(); } : null
+      ));
+      platesCard.appendChild(sub);
+    });
+    platesCard.appendChild(addBtn('Add plate', () => {
+      c.plates.push({ slot: 'hero', focus: 'center', url: '', title: '', creator: '', year: '' });
+      rerender();
+    }));
+    wrap.appendChild(platesCard);
+
+    wrap.appendChild(rowBtns(
+      () => { if (confirm('Delete the "' + c.name + '" collection?')) { data.collections.splice(i, 1); rerender(); } },
+      i > 0 ? () => { move(data.collections, i, -1); rerender(); } : null,
+      i < data.collections.length - 1 ? () => { move(data.collections, i, 1); rerender(); } : null
+    ));
+    host.appendChild(wrap);
+  });
+
+  host.appendChild(addBtn('New collection', () => {
+    data.collections.push({
+      id: 'new-collection-' + (data.collections.length + 1),
+      no: String(data.collections.length + 1).padStart(2, '0'),
+      name: 'Untitled',
+      deck: '',
+      source: '',
+      accent: '#a83432',
+      paper:  '#f4ecd8',
+      plates: []
+    });
+    rerender();
+  }));
+}
+
+// Quotes
+function renderQuotes(host) {
+  const hint = document.createElement('p'); hint.className = 'hint';
+  hint.innerHTML = 'The home page picks one of these at random on every load. <code>*asterisks*</code> for italics in either field.';
+  host.appendChild(hint);
+  data.quotes.forEach((q, i) => {
+    const c = card('Quote ' + (i + 1));
+    c.appendChild(rowText('Text', q.text, v => q.text = v, { tag: 'textarea' }));
+    c.appendChild(rowText('Attribution', q.attr, v => q.attr = v, { note: 'Shown below the quote in monospace caps.' }));
+    c.appendChild(rowBtns(
+      () => { data.quotes.splice(i, 1); rerender(); },
+      i > 0 ? () => { move(data.quotes, i, -1); rerender(); } : null,
+      i < data.quotes.length - 1 ? () => { move(data.quotes, i, 1); rerender(); } : null
+    ));
+    host.appendChild(c);
+  });
+  host.appendChild(addBtn('Add quote', () => { data.quotes.push({ text: '', attr: '' }); rerender(); }));
+}
+
+// About page
+function renderAbout(host) {
+  const a = data.about;
+  const hint = document.createElement('p'); hint.className = 'hint';
+  hint.innerHTML = 'The About page. The first paragraph gets the editorial drop-cap. <code>*italic*</code> and <code>[text](url)</code> both work in paragraphs.';
+  host.appendChild(hint);
+
+  const head = card('Heading');
+  head.appendChild(rowText('Kicker',   a.kicker,   v => a.kicker = v));
+  head.appendChild(rowText('Headline', a.headline, v => a.headline = v));
+  head.appendChild(rowText('Deck',     a.deck,     v => a.deck = v, { tag: 'textarea' }));
+  host.appendChild(head);
+
+  const loc = card('Location stamp (side column)');
+  a.locationStamp.forEach((line, i) => {
+    const c = card('Line ' + (i + 1));
+    c.appendChild(rowText('Line', line, v => { a.locationStamp[i] = v; }));
+    c.appendChild(rowBtns(
+      () => { a.locationStamp.splice(i, 1); rerender(); },
+      i > 0 ? () => { move(a.locationStamp, i, -1); rerender(); } : null,
+      i < a.locationStamp.length - 1 ? () => { move(a.locationStamp, i, 1); rerender(); } : null
+    ));
+    loc.appendChild(c);
+  });
+  loc.appendChild(addBtn('Add line', () => { a.locationStamp.push(''); rerender(); }));
+  host.appendChild(loc);
+
+  const ps = card('Bio paragraphs');
+  a.paragraphs.forEach((p, i) => {
+    const c = card('Paragraph ' + (i + 1) + (i === 0 ? ' (drop-cap)' : ''));
+    c.appendChild(rowText('Text', p, v => { a.paragraphs[i] = v; }, { tag: 'textarea', tall: true }));
+    c.appendChild(rowBtns(
+      () => { a.paragraphs.splice(i, 1); rerender(); },
+      i > 0 ? () => { move(a.paragraphs, i, -1); rerender(); } : null,
+      i < a.paragraphs.length - 1 ? () => { move(a.paragraphs, i, 1); rerender(); } : null
+    ));
+    ps.appendChild(c);
+  });
+  ps.appendChild(addBtn('Add paragraph', () => { a.paragraphs.push(''); rerender(); }));
+  host.appendChild(ps);
+}
+
+// Resume
+function renderResume(host) {
+  const r = data.resume;
+  const hint = document.createElement('p'); hint.className = 'hint';
+  hint.innerHTML = 'CV page — grouped by section, with year stubs.';
+  host.appendChild(hint);
+
+  const head = card('Heading');
+  head.appendChild(rowText('Kicker',   r.kicker,   v => r.kicker = v));
+  head.appendChild(rowText('Headline', r.headline, v => r.headline = v));
+  head.appendChild(rowText('Deck',     r.deck,     v => r.deck = v, { tag: 'textarea', note: 'Markdown links work — e.g. <code>[Download PDF](/cv.pdf)</code>.' }));
+  host.appendChild(head);
+
+  r.sections.forEach((sec, i) => {
+    const sCard = card('Section: ' + sec.heading);
+    sCard.appendChild(rowText('Heading', sec.heading, v => sec.heading = v));
+
+    const entCard = card('Entries');
+    sec.entries.forEach((e, j) => {
+      const sub = card('Entry ' + (j + 1));
+      sub.appendChild(rowText('Year stub',   e.year,        v => e.year = v, { mono: true }));
+      sub.appendChild(rowText('Title',       e.title,       v => e.title = v));
+      sub.appendChild(rowText('Org / sub',   e.org,         v => e.org = v));
+      sub.appendChild(rowText('Description', e.description, v => e.description = v, { tag: 'textarea' }));
+      sub.appendChild(rowBtns(
+        () => { sec.entries.splice(j, 1); rerender(); },
+        j > 0 ? () => { move(sec.entries, j, -1); rerender(); } : null,
+        j < sec.entries.length - 1 ? () => { move(sec.entries, j, 1); rerender(); } : null
+      ));
+      entCard.appendChild(sub);
+    });
+    entCard.appendChild(addBtn('Add entry', () => { sec.entries.push({ year: '', title: '', org: '', description: '' }); rerender(); }));
+    sCard.appendChild(entCard);
+
+    sCard.appendChild(rowBtns(
+      () => { if (confirm('Delete the "' + sec.heading + '" section?')) { r.sections.splice(i, 1); rerender(); } },
+      i > 0 ? () => { move(r.sections, i, -1); rerender(); } : null,
+      i < r.sections.length - 1 ? () => { move(r.sections, i, 1); rerender(); } : null
+    ));
+    host.appendChild(sCard);
+  });
+  host.appendChild(addBtn('Add section', () => { r.sections.push({ heading: 'New Section', entries: [] }); rerender(); }));
+}
+
+// Contact
+function renderContact(host) {
+  const c = data.contact;
+  const hint = document.createElement('p'); hint.className = 'hint';
+  hint.innerHTML = 'The Contact page — four cards. Use <code>mailto:</code> URLs for email links.';
+  host.appendChild(hint);
+
+  const head = card('Heading');
+  head.appendChild(rowText('Kicker',   c.kicker,   v => c.kicker = v));
+  head.appendChild(rowText('Headline', c.headline, v => c.headline = v));
+  head.appendChild(rowText('Deck',     c.deck,     v => c.deck = v, { tag: 'textarea' }));
+  host.appendChild(head);
+
+  c.cards.forEach((card_, i) => {
+    const sub = card('Card: ' + card_.kicker);
+    sub.appendChild(rowText('Kicker',      card_.kicker,      v => card_.kicker = v));
+    sub.appendChild(rowText('Headline',    card_.headline,    v => card_.headline = v));
+    sub.appendChild(rowText('URL',         card_.url,         v => card_.url = v, { mono: true }));
+    sub.appendChild(rowText('Description', card_.description, v => card_.description = v, { tag: 'textarea' }));
+    sub.appendChild(rowBtns(
+      () => { c.cards.splice(i, 1); rerender(); },
+      i > 0 ? () => { move(c.cards, i, -1); rerender(); } : null,
+      i < c.cards.length - 1 ? () => { move(c.cards, i, 1); rerender(); } : null
+    ));
+    host.appendChild(sub);
+  });
+  host.appendChild(addBtn('Add card', () => { c.cards.push({ kicker: 'New', headline: '', url: '#', description: '' }); rerender(); }));
+}
+
+// Footer / social
+function renderFooter(host) {
+  const f = data.footer;
+  const hint = document.createElement('p'); hint.className = 'hint';
+  hint.innerHTML = 'Social links in the bottom row of every page footer.';
+  host.appendChild(hint);
+
+  f.social.forEach((s, i) => {
+    const c = card('Link ' + (i + 1));
+    c.appendChild(rowText('Label', s.label, v => s.label = v));
+    c.appendChild(rowText('URL',   s.url,   v => s.url = v, { mono: true }));
+    c.appendChild(rowBtns(
+      () => { f.social.splice(i, 1); rerender(); },
+      i > 0 ? () => { move(f.social, i, -1); rerender(); } : null,
+      i < f.social.length - 1 ? () => { move(f.social, i, 1); rerender(); } : null
+    ));
+    host.appendChild(c);
+  });
+  host.appendChild(addBtn('Add social link', () => { f.social.push({ label: '', url: '' }); rerender(); }));
+}
+
+// ═══ EVENT WIRING ═════════════════════════════════════════════
+document.getElementById('save').onclick   = save;
+document.getElementById('revert').onclick = revert;
+document.getElementById('logout').onclick = e => { e.preventDefault(); logout(); };
+document.getElementById('nav').addEventListener('click', e => {
+  const b = e.target.closest('button[data-pane]');
+  if (b) setActivePane(b.dataset.pane);
+});
+// Keyboard: Cmd/Ctrl+S
+window.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+    e.preventDefault();
+    if (isDirty()) save();
+  }
+});
+// Warn on unload if dirty
+window.addEventListener('beforeunload', e => {
+  if (data && isDirty()) { e.preventDefault(); e.returnValue = ''; }
+});
+</script>
+
+</body>
+</html>
