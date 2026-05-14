@@ -172,7 +172,7 @@
       "paper": "#f4ecd8",
       "plates": [
         {
-          "slot": "open-book",
+          "slot": "hero",
           "focus": "center 30%",
           "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/85300/85359v.jpg",
           "title": "",
@@ -180,7 +180,7 @@
           "year": ""
         },
         {
-          "slot": "euchre-club",
+          "slot": "open-book",
           "focus": "center",
           "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/56500/56545v.jpg",
           "title": "",
@@ -188,7 +188,7 @@
           "year": ""
         },
         {
-          "slot": "hero",
+          "slot": "history-club",
           "focus": "center 40%",
           "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/86200/86216v.jpg",
           "title": "",
@@ -212,7 +212,7 @@
           "year": ""
         },
         {
-          "slot": "history-club",
+          "slot": "euchre-club",
           "focus": "center 25%",
           "url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/72800/72892v.jpg",
           "title": "",
