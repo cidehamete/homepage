@@ -207,19 +207,14 @@
     }
   ],
   "about": {
-    "kicker": "About",
-    "headline": "A few notes on the writer.",
-    "deck": "Books, the Great Depression, the card game euchre, AI & writing, and the curious corners of culture.",
-    "locationStamp": [
-      "Los Angeles",
-      "California",
-      "MMXXVI"
-    ],
+    "kicker": "",
+    "headline": "About me",
+    "deck": "I am an author and journalist, and I lead the editorial team at Fable and Everand.",
+    "locationStamp": [],
     "paragraphs": [
-      "Jason Boog is a writer and editor in Los Angeles. He is the author of *Born Reading* (Touchstone) and *The Deep End: The Literary Scene in the Great Depression and Today*, and edits at [Fable](https://fable.co), where he works on tools for readers and writers.",
-      "He has reported on books, technology, and labor for outlets including the Los Angeles Times, Wired, Salon, and Publishers Weekly, where he edited GalleyCat. His current obsessions include WPA-era literary magazines, the patient strangeness of the card game euchre, and what it means to write alongside a machine that talks back.",
-      "He's also the proud parent of a small bookworm, a habit of three re-reads a year, and a long-running suspicion that the most interesting writing happens in the margins.",
-      "If a piece of his work has landed in your hands at the right moment, he'd love to hear about it. The [letters page](/contact.html) is always open."
+      "My work has appeared in The Believer, Salon, The Awl, NPR Books, The Los Angeles Review of Books, Peace Corps Writers, and other outlets. I was the west coast correspondent for Publishers Weekly.",
+      "After graduating from the University of Michigan, I spent two years teaching youth groups in Peace Corps Guatemala. ",
+      "After earning my M.A. in journalism at New York University,  I worked as an investigative reporter at Judicial Reports and served as the publishing editor at Mediabistro, leading the GalleyCat blog."
     ]
   },
   "resume": {
