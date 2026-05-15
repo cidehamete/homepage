@@ -128,7 +128,13 @@
     if (isHero) {
       const cap = scope.querySelector('.hero-cap');
       if (cap) {
-        cap.querySelector('.title').textContent = plate ? (plate.title || '—') : '—';
+        const titleEl = cap.querySelector('.title');
+        const title = plate ? (plate.title || '—') : '—';
+        if (plate && plate.link) {
+          titleEl.innerHTML = '<a href="' + escapeHtml(plate.link) + '">' + escapeHtml(title) + '</a>';
+        } else {
+          titleEl.textContent = title;
+        }
         const metaParts = plate ? [plate.creator, plate.year].filter(Boolean) : [];
         cap.querySelector('.meta').textContent = metaParts.length ? metaParts.join(' · ') : '—';
       }
@@ -155,6 +161,10 @@
         const pieces = (r.pieces || []).map(function (p) {
           return '<li><a href="' + escapeHtml(p.url) + '">' + md(p.title) + '</a></li>';
         }).join('');
+        const hasMore = r.moreUrl && r.moreUrl.trim() && r.moreUrl.trim() !== '#';
+        const moreLink = hasMore
+          ? '  <a href="' + escapeHtml(r.moreUrl) + '" class="room-more">All of ' + escapeHtml(r.name) + '</a>'
+          : '';
         return '' +
           '<article class="room" data-plate-slot="' + escapeHtml(r.slot) + '">' +
           '  <figure class="room-plate">' +
@@ -169,7 +179,7 @@
           '  <div class="room-head"><h3 class="room-name">' + escapeHtml(r.name) + '</h3></div>' +
           '  <p class="room-deck">' + md(r.deck || '') + '</p>' +
           '  <ul class="room-pieces">' + pieces + '</ul>' +
-          '  <a href="' + escapeHtml(r.moreUrl || '#') + '" class="room-more">All of ' + escapeHtml(r.name) + '</a>' +
+          moreLink +
           '</article>';
       }).join('');
     }

@@ -711,9 +711,10 @@ function renderCollections(host) {
       prevRow.appendChild(plab); prevRow.appendChild(pfld); sub.appendChild(prevRow);
 
       sub.appendChild(rowText('Slot',    p.slot,    v => p.slot = v, { mono: true, note: 'Match a room slot — <code>hero</code>, <code>open-book</code>, <code>wititi</code>, <code>history-club</code>, <code>writing-machines</code>, etc.' }));
-      sub.appendChild(rowText('URL',     p.url,     v => p.url = v, { mono: true, note: 'Direct URL to a public-domain image (LOC, IA, Smithsonian, etc.).' }));
+      sub.appendChild(rowText('Image URL', p.url,   v => p.url = v, { mono: true, note: 'Direct URL to a public-domain image (LOC, IA, Smithsonian, etc.).' }));
       sub.appendChild(rowText('Focus',   p.focus,   v => p.focus = v, { mono: true, placeholder: 'center', note: 'CSS object-position: <code>center</code>, <code>center 30%</code>, <code>left 40%</code>…' }));
       sub.appendChild(rowText('Title',   p.title,   v => p.title = v));
+      sub.appendChild(rowText('Link',    p.link || '', v => p.link = v, { mono: true, note: 'Optional — makes the title in the hero caption clickable (e.g. the LOC page for the photo).' }));
       sub.appendChild(rowText('Creator', p.creator, v => p.creator = v));
       sub.appendChild(rowText('Year',    p.year,    v => p.year = v, { mono: true }));
       sub.appendChild(rowBtns(
@@ -724,7 +725,7 @@ function renderCollections(host) {
       platesCard.appendChild(sub);
     });
     platesCard.appendChild(addBtn('Add plate', () => {
-      c.plates.push({ slot: 'hero', focus: 'center', url: '', title: '', creator: '', year: '' });
+      c.plates.push({ slot: 'hero', focus: 'center', url: '', title: '', link: '', creator: '', year: '' });
       rerender();
     }));
     wrap.appendChild(platesCard);
