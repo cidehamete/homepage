@@ -218,8 +218,8 @@
     ]
   },
   "resume": {
-    "kicker": "My resume",
-    "headline": "",
+    "kicker": "",
+    "headline": "My resume",
     "deck": "",
     "sections": [
       {
