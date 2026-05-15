@@ -37,7 +37,7 @@
       "slot": "open-book",
       "name": "Open Book",
       "deck": "Things I wrote about the reading life.",
-      "caption": "\"Employee taking reel of computer tape off shelves,\" 1979 — [Library of Congress](https://www.loc.gov/pictures/item/2021637542/)",
+      "caption": "\"Employee taking reel of computer tape off shelves,\" 1979 \u2014 [Library of Congress](https://www.loc.gov/pictures/item/2021637542/)",
       "moreUrl": "#",
       "pieces": [
         {
@@ -58,7 +58,7 @@
       "slot": "wititi",
       "name": "Why Is This Interesting?",
       "deck": "Things I wrote for my favorite newsletter.",
-      "caption": "\"Computer room at the U.S. News & World Report Magazine offices,\" 1982 — [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2023631866/)",
+      "caption": "\"Computer room at the U.S. News & World Report Magazine offices,\" 1982 \u2014 [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2023631866/)",
       "moreUrl": "#",
       "pieces": [
         {
@@ -79,7 +79,7 @@
       "slot": "history-club",
       "name": "History Club",
       "deck": "Things I wrote about writers and the Great Depression.",
-      "caption": "\"Man seated in front of a computer terminal,\" 1976 — [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2024630324/)",
+      "caption": "\"Man seated in front of a computer terminal,\" 1976 \u2014 [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2024630324/)",
       "moreUrl": "#",
       "pieces": [
         {
@@ -87,7 +87,7 @@
           "url": "https://lithub.com/how-did-writers-survive-the-first-great-depression/"
         },
         {
-          "title": "What are sto­ries for? : On Muriel Rukeyser and identity",
+          "title": "What are sto\u00adries for? : On Muriel Rukeyser and identity",
           "url": "https://www.jewishbookcouncil.org/pb-daily/why-we-need-muriel-rukeyser-now"
         },
         {
@@ -100,7 +100,7 @@
       "slot": "writing-machines",
       "name": "Writing Machines",
       "deck": "Things I wrote about AI and writers.",
-      "caption": "\"Woman in a computer room,\" 1967 — [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2024639979/)",
+      "caption": "\"Woman in a computer room,\" 1967 \u2014 [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2024639979/)",
       "moreUrl": "#",
       "pieces": [
         {
@@ -120,27 +120,27 @@
   ],
   "quotes": [
     {
-      "text": "Digressions, incontestably, are the sunshine — they are the life, the soul of reading!",
+      "text": "Digressions, incontestably, are the sunshine \u2014 they are the life, the soul of reading!",
       "attr": "Tristram Shandy by Laurence Sterne"
     },
     {
-      "text": "“The reader sees the world through the detective’s eyes, experiencing the proliferation of its details as if for the first time. He has become awake to the things around him.”",
+      "text": "\u201cThe reader sees the world through the detective\u2019s eyes, experiencing the proliferation of its details as if for the first time. He has become awake to the things around him.\u201d",
       "attr": "The New York Trilogy by Paul Auster"
     },
     {
-      "text": "“Trust nobody and love nothing except literature.\"",
+      "text": "\u201cTrust nobody and love nothing except literature.\"",
       "attr": "Call Me Zebra by Azareen Van der Vliet Oloomi"
     },
     {
-      "text": "“I have not died; for I always carry a little notebook and pencil to annotate everything, and if that had happened to me, I would have written it down.”",
-      "attr": "Newcomer’s Papers by Macedonio Fernández"
+      "text": "\u201cI have not died; for I always carry a little notebook and pencil to annotate everything, and if that had happened to me, I would have written it down.\u201d",
+      "attr": "Newcomer\u2019s Papers by Macedonio Fern\u00e1ndez"
     },
     {
-      "text": "“It’s the opposite of a blog. It’s an antiblog, because it’s meant for only one special person, and that person is you.”",
+      "text": "\u201cIt\u2019s the opposite of a blog. It\u2019s an antiblog, because it\u2019s meant for only one special person, and that person is you.\u201d",
       "attr": "A Tale for the Time Being by Ruth Ozeki"
     },
     {
-      "text": "“Whether you’re a human being, an insect, a microbe, or a stone, this verse is true. All that you touch, You Change. All that you Change, Changes you.”",
+      "text": "\u201cWhether you\u2019re a human being, an insect, a microbe, or a stone, this verse is true. All that you touch, You Change. All that you Change, Changes you.\u201d",
       "attr": "Parable of the Sower by Octavia E. Butler"
     }
   ],
@@ -220,7 +220,7 @@
   "resume": {
     "kicker": "Resume",
     "headline": "Selected work, in reverse order.",
-    "deck": "A working résumé — books, editorial positions, and reporting. [Download PDF](#).",
+    "deck": "A working r\u00e9sum\u00e9 \u2014 books, editorial leadership, reporting, and teaching. [Download PDF](#).",
     "sections": [
       {
         "heading": "Books",
@@ -229,57 +229,88 @@
             "year": "2024",
             "title": "The Deep End",
             "org": "The Literary Scene in the Great Depression and Today",
-            "description": "A history of writers, magazines, and labor movements between two crashes — and what they can teach us now."
+            "description": "A history of writers, magazines, and labor movements between two crashes \u2014 and what they can teach us now."
           },
           {
             "year": "2014",
             "title": "Born Reading",
-            "org": "Bringing Up Bookworms in a Digital Age · Touchstone / Simon & Schuster",
+            "org": "Bringing Up Bookworms in a Digital Age \u00b7 Touchstone / Simon & Schuster",
             "description": "A reader's guide to raising readers, drawn from interviews with librarians, researchers, and parents."
           }
         ]
       },
       {
-        "heading": "Editorial",
+        "heading": "Work Experience",
         "entries": [
           {
-            "year": "2021 — now",
-            "title": "Editor",
-            "org": "Fable",
-            "description": "Editorial direction for a reading and book-club platform — author programs, recommendation systems, and writing tools."
+            "year": "2020 \u2014 now",
+            "title": "Senior Manager, Editorial",
+            "org": "Fable & Scribd \u00b7 San Francisco, CA",
+            "description": "Editorial leadership for book club, home feed, and AI strategy. Supervise a team of four writers and helm projects across career coaching, corporate clubs, and university learning."
           },
           {
-            "year": "2017 — 2021",
-            "title": "Senior Editor",
-            "org": "Independent & consulting work",
-            "description": "Books and culture editing for technology and media clients; long-form reporting on labor and the literary world."
+            "year": "2017 \u2014 2020",
+            "title": "West Coast Correspondent",
+            "org": "*Publishers Weekly* \u00b7 Los Angeles, CA",
+            "description": "Reporting on publishing industry news, developments, and deals \u2014 with a long run of features at the intersection of tech and publishing, and the early arrival of AI in writing."
           },
           {
-            "year": "2008 — 2016",
-            "title": "Editor, GalleyCat",
-            "org": "Mediabistro / Publishers Weekly",
-            "description": "Daily reporting on the publishing industry — authors, deals, technology, and the long tail of bookselling."
+            "year": "2017 \u2014 now",
+            "title": "Editorial Director",
+            "org": "Magical Threads \u00b7 Los Angeles, CA",
+            "description": "Content marketing strategy for clients across articles, social posts, branding documents, presentations, and fan-community work. Direct a team of five to ten writers."
+          },
+          {
+            "year": "2014 \u2014 2017",
+            "title": "Director, Story Research & Development",
+            "org": "True Pictures \u00b7 Los Angeles, CA",
+            "description": "Built a network of expert consultants, wrote research reports, and collaborated on story development. Supervised a team of three to five writers and researchers."
+          },
+          {
+            "year": "2008 \u2014 2013",
+            "title": "Publishing Editor",
+            "org": "Mediabistro \u00b7 Editor, *GalleyCat* & *AppNewser* \u00b7 New York, NY",
+            "description": "Edited the *GalleyCat* and *AppNewser* blogs, ran a robust publishing-industry social presence, curated the publishing curriculum, and led a team of four to six bloggers."
+          },
+          {
+            "year": "2007 \u2014 2010",
+            "title": "Adjunct Faculty",
+            "org": "New York University School of Journalism \u00b7 New York, NY",
+            "description": "Taught introductory journalism and journalism ethics, drawing on real-life scenarios from my own reporting."
+          },
+          {
+            "year": "2005 \u2014 2009",
+            "title": "Staff Writer",
+            "org": "*Judicial Reports* \u00b7 New York, NY",
+            "description": "Investigative reporter for a judicial-watchdog publication. Weekly features about judges in New York City."
+          },
+          {
+            "year": "2000 \u2014 2002",
+            "title": "Volunteer",
+            "org": "U.S. Peace Corps \u00b7 Guatemala",
+            "description": "Worked with youth groups on small-business and creative projects. Wrote and designed a training manual for new volunteers."
           }
         ]
       },
       {
-        "heading": "Reporting & Essays",
-        "entries": [
-          {
-            "year": "Selected",
-            "title": "Bylines",
-            "org": "Los Angeles Times · Wired · Salon · Publishers Weekly · The Believer",
-            "description": "Reporting on books, AI & writing, the gig economy, and the strange recurrences of the Great Depression."
-          }
-        ]
-      },
-      {
-        "heading": "Talks & Teaching",
+        "heading": "Freelance & Speaking",
         "entries": [
           {
             "year": "Ongoing",
-            "title": "Workshops on reading aloud, writing with AI, and the literary archive",
-            "org": "Libraries, schools, and writing programs",
+            "title": "Writing on AI and the future of writing",
+            "org": "*Publishers Weekly* \u00b7 *Why Is This Interesting?* \u00b7 SuperRare \u00b7 Medium",
+            "description": "Reporting and essays on developments in AI and what they mean for writers and publishers."
+          },
+          {
+            "year": "2023",
+            "title": "Responsible AI workshop",
+            "org": "Fintech communications team \u00b7 New York, NY",
+            "description": "Two-hour in-person training on responsible AI use for a large communications team."
+          },
+          {
+            "year": "2020",
+            "title": "Featured speaker, U.S. Copyright Office hearing",
+            "org": "\"Copyright in the Age of A.I.: Session 5 \u2014 AI and Creating a World of Other Works\" \u00b7 Washington, D.C.",
             "description": ""
           }
         ]

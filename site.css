@@ -359,7 +359,9 @@ nav.masthead-nav a.is-current { color: var(--accent); }
 }
 .interior-prose p { margin-bottom: 1.1rem; }
 .interior-prose p + p { text-indent: 1.5em; }
-.interior-prose p:first-of-type::first-letter {
+/* Drop-cap on About page only — scoped to direct <p> children of .interior-prose
+   so it doesn't leak into the resume's description paragraphs. */
+.interior-prose > p:first-of-type::first-letter {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
   font-size: 3.3rem;
