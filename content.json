@@ -61,7 +61,7 @@
     {
       "slot": "wititi",
       "name": "Why Is This Interesting?",
-      "deck": "Things I wrote for a wonderful newsletter.",
+      "deck": "Things I wrote for my favorite newsletter.",
       "caption": "\"Computer room at the U.S. News & World Report Magazine offices,\" 1982 — [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2023631866/)",
       "moreUrl": "#",
       "pieces": [
@@ -86,50 +86,42 @@
     {
       "slot": "history-club",
       "name": "History Club",
-      "deck": "Writers who survived the blast furnace — and what they can teach us now.",
+      "deck": "Things I wrote about writers and the Great Depression.",
       "caption": "\"Man seated in front of a computer terminal,\" 1976 — [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2024630324/)",
       "moreUrl": "#",
       "pieces": [
         {
-          "title": "*The Deep End: The Literary Scene in the Great Depression and Today*",
-          "url": "https://jasonboog.com/the-deep-end/"
+          "title": "Sad Men: On writers, the Great Depression, and the Federal Writers Project",
+          "url": "https://lithub.com/how-did-writers-survive-the-first-great-depression/"
         },
         {
-          "title": "Meridel Le Sueur's Reporting",
-          "url": "#"
+          "title": "What are sto­ries for? : On Muriel Rukeyser, documentary poetry, and identity",
+          "url": "https://www.jewishbookcouncil.org/pb-daily/why-we-need-muriel-rukeyser-now"
         },
         {
-          "title": "*The New Masses*, Briefly Explained",
-          "url": "#"
-        },
-        {
-          "title": "What the WPA Writers Got Right",
-          "url": "#"
+          "title": "Bohemian Rhapsody: On sidewalk poets, the Great Depression, and one girl's disappearance",
+          "url": "https://www.thebeliever.net/bohemian-rhapsody/"
         }
       ]
     },
     {
       "slot": "writing-machines",
       "name": "Writing Machines",
-      "deck": "Notes from one of the first writers to take AI seriously as a co-author.",
+      "deck": "Things I wrote about AI and writers.",
       "caption": "\"Woman in a computer room,\" 1967 — [Library of Congress](https://www.loc.gov/pictures/collection/cph/item/2024639979/)",
       "moreUrl": "#",
       "pieces": [
         {
-          "title": "Artificial Intelligence & Writing",
-          "url": "https://jasonboog.com/artificial-intelligence-writing/"
+          "title": "Cyranoids: On AI cheating, Stanley Milgram, and sincerity.",
+          "url": "https://whyisthisinteresting.substack.com/p/the-cyranoid-edition"
         },
         {
-          "title": "On Confabulation, Human and Otherwise",
-          "url": "#"
+          "title": "The Great Automatic Grammatizator: On writing machines, AI Dungeon, and punchcard computers",
+          "url": "https://whyisthisinteresting.substack.com/p/why-is-this-interesting-the-gpt-3"
         },
         {
-          "title": "The First Synthesizer Was Also a Scandal",
-          "url": "#"
-        },
-        {
-          "title": "Five Prompts I Use Every Week",
-          "url": "#"
+          "title": "AI Euchre: On card games, ChatGPT, and confabulation",
+          "url": "https://whyisthisinteresting.substack.com/p/the-euchre-edition"
         }
       ]
     }
