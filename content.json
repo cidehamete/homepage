@@ -288,32 +288,20 @@
   },
   "contact": {
     "kicker": "Letters",
-    "headline": "Write to the editor.",
-    "deck": "Notes, questions, story tips, and reading recommendations are all welcome. I read everything; I answer most.",
+    "headline": "",
+    "deck": "Notes, questions, story tips, and reading recommendations are all welcome. I read everything and answer what I can.",
     "cards": [
       {
-        "kicker": "Email",
-        "headline": "jasonboog@gmail.com",
+        "kicker": "",
+        "headline": "Email me",
         "url": "mailto:jasonboog@gmail.com",
-        "description": "Best for letters, story ideas, and book recommendations."
+        "description": ""
       },
       {
-        "kicker": "Press & Speaking",
-        "headline": "Inquire",
-        "url": "mailto:jasonboog@gmail.com?subject=Press%20inquiry",
-        "description": "Interviews, panels, workshops, and reading-aloud events."
-      },
-      {
-        "kicker": "Newsletter",
-        "headline": "jasonboog.com",
-        "url": "https://jasonboog.com",
-        "description": "Occasional notes from the reading room — books, history, and writing machines."
-      },
-      {
-        "kicker": "Elsewhere",
-        "headline": "Fable",
-        "url": "https://fable.co",
-        "description": "Day job. Editorial direction for a platform built around the things books make people do together."
+        "kicker": "",
+        "headline": "Follow me on Fable",
+        "url": "https://fable.co/fabler/jason-boog-202536802720",
+        "description": ""
       }
     ]
   },
