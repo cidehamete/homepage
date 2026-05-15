@@ -149,9 +149,7 @@
       const items = (content.books.items || [])
         .map(function (b) { return '<li><a href="' + escapeHtml(b.url) + '">' + md(b.title) + '</a></li>'; })
         .join('');
-      booksHost.innerHTML =
-        '<span class="kicker">' + escapeHtml(content.books.kicker || 'The Books') + '</span>' +
-        '<ul class="books-list">' + items + '</ul>';
+      booksHost.innerHTML = '<ul class="books-list">' + items + '</ul>';
     }
 
     // Rooms grid
@@ -200,7 +198,6 @@
     const head = document.querySelector('[data-slot="interior-head"]');
     if (head) {
       head.innerHTML =
-        '<span class="kicker">' + escapeHtml(a.kicker || 'About') + '</span>' +
         '<h1>' + md(a.headline || '') + '</h1>' +
         (a.deck ? '<p class="deck">' + md(a.deck) + '</p>' : '');
     }
@@ -220,7 +217,6 @@
     const head = document.querySelector('[data-slot="interior-head"]');
     if (head) {
       head.innerHTML =
-        '<span class="kicker">' + escapeHtml(r.kicker || 'Resume') + '</span>' +
         '<h1>' + md(r.headline || '') + '</h1>' +
         (r.deck ? '<p class="deck">' + md(r.deck) + '</p>' : '');
     }
@@ -250,7 +246,6 @@
     const head = document.querySelector('[data-slot="interior-head"]');
     if (head) {
       head.innerHTML =
-        '<span class="kicker">' + escapeHtml(c.kicker || 'Letters') + '</span>' +
         '<h1>' + md(c.headline || '') + '</h1>' +
         (c.deck ? '<p class="deck">' + md(c.deck) + '</p>' : '');
     }
