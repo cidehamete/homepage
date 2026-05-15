@@ -218,15 +218,15 @@
     ]
   },
   "resume": {
-    "kicker": "",
-    "headline": "My resume",
+    "kicker": "My resume",
+    "headline": "",
     "deck": "",
     "sections": [
       {
         "heading": "Books",
         "entries": [
           {
-            "year": "2024",
+            "year": "2020",
             "title": "The Deep End",
             "org": "The Literary Scene in the Great Depression and Today",
             "description": ""
