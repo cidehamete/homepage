@@ -1,0 +1,18 @@
+# Old WordPress URLs → new site.
+# Cloudflare Pages reads this file natively. 301 = permanent redirect
+# (Google passes the old page's SEO authority to the new target).
+
+# Direct 1:1 page matches
+/about-jason-boog/         /about.html                                                                                    301
+/recent-work/              /                                                                                              301
+/contact-jason-boog/       /contact.html                                                                                  301
+/jason-boogs-resume/       /resume.html                                                                                   301
+
+# Book pages → official publisher pages (authoritative info + purchase)
+/category/deep-end/        https://orbooks.com/catalog/the-deep-end/                                                      301
+/category/born-reading/    https://www.simonandschuster.com/books/Born-Reading/Jason-Boog/9781476749792                   301
+/born-reading/             https://www.simonandschuster.com/books/Born-Reading/Jason-Boog/9781476749792                   301
+
+# Essays category — no archive page yet on the new site;
+# send readers to the home page where the four rooms surface his current writing.
+/category/essays/          /                                                                                              301
