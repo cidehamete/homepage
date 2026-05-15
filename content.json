@@ -218,9 +218,9 @@
     ]
   },
   "resume": {
-    "kicker": "Resume",
-    "headline": "Selected work, in reverse order.",
-    "deck": "A working résumé — books, editorial leadership, reporting, and teaching. [Download PDF](#).",
+    "kicker": "",
+    "headline": "My resume",
+    "deck": "",
     "sections": [
       {
         "heading": "Books",
@@ -229,13 +229,13 @@
             "year": "2024",
             "title": "The Deep End",
             "org": "The Literary Scene in the Great Depression and Today",
-            "description": "A history of writers, magazines, and labor movements between two crashes — and what they can teach us now."
+            "description": ""
           },
           {
             "year": "2014",
             "title": "Born Reading",
             "org": "Bringing Up Bookworms in a Digital Age · Touchstone / Simon & Schuster",
-            "description": "A reader's guide to raising readers, drawn from interviews with librarians, researchers, and parents."
+            "description": ""
           }
         ]
       },
@@ -246,49 +246,49 @@
             "year": "2020 — now",
             "title": "Senior Manager, Editorial",
             "org": "Fable & Scribd · San Francisco, CA",
-            "description": "Editorial leadership for book club, home feed, and AI strategy. Supervise a team of four writers and helm projects across career coaching, corporate clubs, and university learning."
+            "description": "I lead book club, home feed, and AI editorial strategy, supervising a team of 4 writers and helming projects for career coaching, corporate clubs, and university learning."
           },
           {
             "year": "2017 — 2020",
             "title": "West Coast Correspondent",
             "org": "*Publishers Weekly* · Los Angeles, CA",
-            "description": "Reporting on publishing industry news, developments, and deals — with a long run of features at the intersection of tech and publishing, and the early arrival of AI in writing."
+            "description": "Covered publishing industry news, developments, and deals, focusing on the intersection of tech & publishing, reporting numerous features on AI & writing."
           },
           {
             "year": "2017 — now",
             "title": "Editorial Director",
             "org": "Magical Threads · Los Angeles, CA",
-            "description": "Content marketing strategy for clients across articles, social posts, branding documents, presentations, and fan-community work. Direct a team of five to ten writers."
+            "description": "Led content marketing strategy for clients’ articles, social posts, branding documents, presentations & fan community interactions, leading a team of 5-10 writers."
           },
           {
             "year": "2014 — 2017",
             "title": "Director, Story Research & Development",
             "org": "True Pictures · Los Angeles, CA",
-            "description": "Built a network of expert consultants, wrote research reports, and collaborated on story development. Supervised a team of three to five writers and researchers."
+            "description": "Built a network of expert consultants, wrote research reports, and collaborated on story development. Supervised a team of 3-5 writers & researchers. "
           },
           {
             "year": "2008 — 2013",
             "title": "Publishing Editor",
             "org": "Mediabistro · Editor, *GalleyCat* & *AppNewser* · New York, NY",
-            "description": "Edited the *GalleyCat* and *AppNewser* blogs, ran a robust publishing-industry social presence, curated the publishing curriculum, and led a team of four to six bloggers."
+            "description": "Edited the GalleyCat and AppNewser blogs, maintained our robust social media footprint, curated publishing curriculum and led a team of 4-6 bloggers."
           },
           {
             "year": "2007 — 2010",
             "title": "Adjunct Faculty",
             "org": "New York University School of Journalism · New York, NY",
-            "description": "Taught introductory journalism and journalism ethics, drawing on real-life scenarios from my own reporting."
+            "description": "Taught introductory journalism and journalism ethics courses, introducing my students to real-life scenarios from my own work."
           },
           {
             "year": "2005 — 2009",
             "title": "Staff Writer",
             "org": "*Judicial Reports* · New York, NY",
-            "description": "Investigative reporter for a judicial-watchdog publication. Weekly features about judges in New York City."
+            "description": "Served as an investigative reporter for this judicial watchdog website, writing weekly features about judges in New York City."
           },
           {
             "year": "2000 — 2002",
             "title": "Volunteer",
             "org": "U.S. Peace Corps · Guatemala",
-            "description": "Worked with youth groups on small-business and creative projects. Wrote and designed a training manual for new volunteers."
+            "description": "Worked with youth groups on small business and creative projects. I wrote and designed a training manual for new volunteers."
           }
         ]
       },
