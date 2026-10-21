@@ -1,0 +1,233 @@
+/* ═══════════════════════════════════════════════════════════════
+   REDESIGN — white page, Georgia throughout, 3px black rules
+   Appended to the end of site.css so these rules override the
+   original cream/multi-font design.
+═══════════════════════════════════════════════════════════════ */
+
+/* Repoint the old CSS variables so every selector in the original
+   stylesheet that used var(--paper), var(--ink), etc. picks up the
+   new palette automatically. */
+:root {
+  --paper:      #fff;
+  --paper-soft: #fff;
+  --paper-deep: #f4f4f4;
+  --ink:        #000;
+  --ink-soft:   #4a4a4a;
+  --ink-faint:  #767676;
+  --rule:       #000;
+  --rule-soft:  #dcdcdc;
+  --accent:     #b3261e;
+  --max-w:      960px;
+  /* new vars introduced by the redesign CSS below */
+  --bg:   #fff;
+  --ink-2: #4a4a4a;
+  --ink-3: #767676;
+  --hair: #dcdcdc;
+}
+
+/* Force Georgia on every element. The old stylesheet set Cormorant,
+   Lora, and IBM Plex Mono on specific selectors — more specific than
+   body — so without this blanket rule they'd override the new font. */
+body, body *, h1, h2, h3, h4, h5, h6, p, a, li, span, div, cite,
+blockquote, em, i, aside, nav, section, article, figcaption, label {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+em, i { font-style: italic; }
+
+html, body { background: #fff; }
+body {
+  color: #000; font-size: 17px; line-height: 1.6;
+  padding: 0 1.5rem;
+}
+a { color: #000; text-decoration: none; }
+a:hover { color: var(--accent); }
+
+/* All uppercase labels (kicker, caps, section labels) ─ Georgia tracked wide */
+.caps, .kicker, .cv-section h2 {
+  font-family: Georgia, serif; font-weight: 400;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+
+/* ── Masthead ─────────────────────────────────────────────── */
+.masthead { padding: 3rem 0 0; text-align: center; }
+.masthead-title {
+  font-family: Georgia, serif; font-weight: 400;
+  font-size: clamp(3rem, 8.5vw, 5.4rem);
+  line-height: 1; letter-spacing: -0.025em;
+  padding: 0.4rem 0 1.4rem; margin: 0;
+}
+.masthead-title a { color: #000; }
+.masthead-deck { display: none; }
+.double-rule, .double-rule--thin { display: none; }
+nav.masthead-nav {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 0.4rem 2.75rem; padding: 0.7rem 0;
+  border-top: 3px solid #000; border-bottom: 1px solid #000;
+}
+nav.masthead-nav a {
+  font-family: Georgia, serif; font-weight: 400;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #000;
+}
+nav.masthead-nav a:hover,
+nav.masthead-nav a.is-current { color: var(--accent); }
+
+/* ── Books ────────────────────────────────────────────────── */
+.books {
+  text-align: center; padding: 2.5rem 0 2.25rem; margin: 0;
+  border-bottom: 1px solid var(--hair);
+}
+.books .kicker { color: var(--ink-3); display: block; margin-bottom: 0.9rem; }
+.books-list {
+  list-style: none; display: flex; flex-direction: column;
+  gap: 0.5rem; margin: 0 auto; max-width: none;
+}
+.books-list li {
+  font-family: Georgia, serif; font-weight: 400;
+  font-size: 1.4rem; line-height: 1.25; text-wrap: balance;
+}
+.books-list a {
+  text-decoration: none; color: #000;
+  border-bottom: 1px solid var(--hair);
+  padding-bottom: 0;
+}
+.books-list a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Rooms ────────────────────────────────────────────────── */
+#rooms { border: none; margin: 0; padding: 0; }
+.rooms-grid {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  column-gap: 3.5rem; row-gap: 3.25rem; padding: 2.75rem 0 0;
+}
+.room { display: flex; flex-direction: column; }
+.room-plate { margin: 0 0 1.2rem; }
+/* reset the original "framed" plate so the image sits flush */
+.plate-frame { background: transparent; padding: 0; border: none; }
+.plate-img-wrap {
+  position: relative; aspect-ratio: 4/3;
+  background: #f4f4f4; overflow: hidden;
+}
+.plate-img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; filter: none;  /* reset old sepia tint */
+}
+.plate-placeholder { color: var(--ink-3); font-family: Georgia, serif; letter-spacing: 0.1em; }
+.room-cap {
+  font-size: 0.72rem; line-height: 1.5;
+  color: var(--ink-3); padding: 0.5rem 0 0;
+  font-family: Georgia, serif; letter-spacing: 0;
+  text-transform: none;
+}
+.room-cap a {
+  color: var(--ink-2); text-decoration: none;
+  border-bottom: 1px solid var(--hair);
+}
+.room-cap a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.room-head {
+  display: block; margin: 0; padding-top: 0.9rem;
+  border-top: 3px solid #000;
+}
+.room-name {
+  font-family: Georgia, serif; font-weight: 400;
+  font-size: 1.85rem; line-height: 1.1; letter-spacing: -0.015em;
+}
+.room-deck {
+  font-family: Georgia, serif; font-style: normal;
+  font-size: 0.92rem; color: var(--ink-2);
+  margin: 0.45rem 0 0.9rem;
+}
+.room-pieces {
+  list-style: none; margin: 0; padding: 0;
+  border-top: 1px solid #000; border-bottom: none;
+}
+.room-pieces li {
+  padding: 0; border-bottom: 1px solid var(--hair);
+  font-family: Georgia, serif; font-weight: 400;
+  font-size: 1rem; line-height: 1.35;
+}
+.room-pieces a {
+  display: block; padding: 0.6rem 0; color: #000;
+  text-decoration: none;
+}
+.room-pieces a:hover { color: var(--accent); text-decoration: none; }
+.room-pieces li:last-child { border-bottom: 1px solid var(--hair); }
+.room-more { display: none; }  /* already removed, keep hidden */
+
+/* ── Pull quote ───────────────────────────────────────────── */
+.pull-quote {
+  margin: 4rem auto 0; max-width: 40rem;
+  text-align: center; padding: 2.5rem 0;
+  border-top: 1px solid #000; border-bottom: 1px solid #000;
+}
+.pull-quote::before, .pull-quote::after { display: none; }
+.pull-quote blockquote {
+  font-family: Georgia, serif; font-weight: 400;
+  font-size: 1.55rem; line-height: 1.4; letter-spacing: -0.005em;
+  text-wrap: pretty; margin: 0 0 1rem; color: #000; max-width: none;
+}
+.pull-quote cite {
+  font-style: normal; font-family: Georgia, serif;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+
+/* ── Colophon ─────────────────────────────────────────────── */
+.colophon {
+  margin-top: 4rem; padding: 1.5rem 0 3.5rem;
+  border-top: 3px solid #000; text-align: center;
+}
+.colophon::before { display: none; }
+.foot-nav, .foot-social {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  border-top: none; padding-top: 0;
+}
+.foot-nav { gap: 0.4rem 2.75rem; }
+.foot-social { gap: 0.4rem 1.75rem; margin-top: 1rem; }
+.foot-nav a, .foot-social a {
+  font-family: Georgia, serif; font-size: 0.7rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none;
+}
+.foot-nav a { color: #000; }
+.foot-social a { color: var(--ink-3); }
+.foot-nav a:hover, .foot-social a:hover,
+.foot-nav a.is-current { color: var(--accent); }
+
+/* Hero plate (if ever added back later) */
+.hero-plate { display: none; }
+
+/* ── Interior pages (about, resume, contact) ──────────────── */
+.interior { margin: 2.5rem 0 0; padding-top: 2rem; border-top: 1px solid #000; }
+.interior-head h1, .cv-entry h3, .contact-card .h {
+  font-family: Georgia, serif; font-weight: 400;
+  letter-spacing: -0.015em; color: #000;
+}
+.interior-head .deck, .cv-entry .org {
+  font-family: Georgia, serif; font-style: normal;
+  color: var(--ink-2);
+}
+.interior-prose p { color: #000; }
+.interior-prose p:first-of-type::first-letter,
+.interior-prose > p:first-of-type::first-letter {
+  font-family: Georgia, serif; color: #000;
+}
+.col-side, .cv-entry .yr {
+  font-family: Georgia, serif; letter-spacing: 0.08em; color: var(--ink-3);
+}
+.cv-section h2 {
+  color: var(--ink-3); border-bottom: 1px solid var(--hair);
+}
+.cv-entry { border-bottom: 1px solid var(--hair); }
+.contact-card {
+  background: #fafafa; border: 1px solid var(--hair);
+}
+.contact-card .kicker { color: var(--ink-3); }
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  body { font-size: 16px; padding: 0 1rem; }
+  .rooms-grid { grid-template-columns: minmax(0,1fr); row-gap: 2.75rem; }
+  nav.masthead-nav { gap: 0.4rem 1.75rem; }
+  .pull-quote blockquote { font-size: 1.4rem; }
+}
